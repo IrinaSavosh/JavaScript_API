@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Расписание занятий</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .full {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Расписание занятий</h1>
+        <div id="schedule" class="mt-4"></div>
+    </div>
+
+    <script>
+        const classes = [
+            { id: 1, name: "Йога", time: "10:00", maxParticipants: 10, currentParticipants: 5 },
+            { id: 2, name: "Пилатес", time: "11:00", maxParticipants: 8, currentParticipants: 8 },
+            { id: 3, name: "Танцы", time: "12:00", maxParticipants: 15, currentParticipants: 10 }
+        ];
+
+        function renderClasses() {
+            const scheduleDiv = document.getElementById('schedule');
+            scheduleDiv.innerHTML = '';
+
+            classes.forEach(cls => {
+                const classDiv = document.createElement('div');
+                classDiv.className = 'card mb-3';
+                classDiv.innerHTML = `
+                    <div class="card-body">
+                        <h5 class="card-title">${cls.name}</h5>
+                        <p class="card-text">Время: ${cls.time}</p>
+                        <p class="card-text">Макс. участников: ${cls.maxParticipants}</p>
+                        <p class="card-text">Записано участников: ${cls.currentParticipants}</p>
+                        <button class="btn btn-primary" id="join-${cls.id}" ${cls.currentParticipants >= cls.maxParticipants ? 'disabled' : ''}>Записаться</button>
+                        <button class="btn btn-danger" id="leave-${cls.id}" ${cls.currentParticipants === 0 ? 'disabled' : ''}>Отменить запись</button>
+                    </div>
+                `;
+                scheduleDiv.appendChild(classDiv);
+
+                document.getElementById(`join-${cls.id}`).addEventListener('click', () => joinClass(cls.id));
+                document.getElementById(`leave-${cls.id}`).addEventListener('click', () => leaveClass(cls.id));
+            });
+        }
+
+        function joinClass(id) {
+            const cls = classes.find(c => c.id === id);
+            if (cls.currentParticipants < cls.maxParticipants) {
+                cls.currentParticipants++;
+                renderClasses();
+            }
+        }
+
+        function leaveClass(id) {
+            const cls = classes.find(c => c.id === id);
+            if (cls.currentParticipants > 0) {
+                cls.currentParticipants--;
+                renderClasses();
+            }
+        }
+
+        renderClasses();
+    </script>
+</body>
+</html>
