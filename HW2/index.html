@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="style.css">
+		<title>Слайдер изображений собак</title>
+		<style>
+			
+		</style>
+	</head>
+	<body>
+		<div class="slider">
+			<div class="slides">
+				<div class="slide">
+					<img src="image/1.jfif" alt="Собака 1" style="width: 100%" />
+				</div>
+				<div class="slide">
+					<img src="image/2.jfif" alt="Собака 2" style="width: 100%" />
+				</div>
+				<div class="slide">
+					<img src="image/3.jfif" alt="Собака 3" style="width: 100%" />
+				</div>
+			</div>
+		</div>
+		<div class="nav-buttons">
+			<button id="prev">Предыдущее изображение</button>
+			<button id="next">Следующее изображение</button>
+		</div>
+		<div class="indicators"></div>
+
+		<script>
+			const slides = document.querySelector(".slides");
+			const slideCount = document.querySelectorAll(".slide").length;
+			let currentIndex = 0;
+
+			function updateIndicators() {
+				const indicatorsContainer = document.querySelector(".indicators");
+				indicatorsContainer.innerHTML = "";
+				for (let i = 0; i < slideCount; i++) {
+					const indicator = document.createElement("div");
+					indicator.classList.add("indicator");
+					if (i === currentIndex) {
+						indicator.classList.add("active");
+					}
+					indicator.addEventListener("click", () => {
+						currentIndex = i;
+						updateSlidePosition();
+					});
+					indicatorsContainer.appendChild(indicator);
+				}
+			}
+
+			function updateSlidePosition() {
+				slides.style.transform = "translateX(" + -currentIndex * 100 + "%)";
+				updateIndicators();
+			}
+
+			document.getElementById("prev").addEventListener("click", () => {
+				currentIndex = currentIndex > 0 ? currentIndex - 1 : slideCount - 1;
+				updateSlidePosition();
+			});
+
+			document.getElementById("next").addEventListener("click", () => {
+				currentIndex = currentIndex < slideCount - 1 ? currentIndex + 1 : 0;
+				updateSlidePosition();
+			});
+
+			updateIndicators();
+		</script>
+	</body>
+</html>

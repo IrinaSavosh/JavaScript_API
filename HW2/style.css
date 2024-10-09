@@ -1,0 +1,58 @@
+body {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100vh;
+   background-color: #f0f0f0;
+   margin: 0;
+   flex-direction: column; /* Вертикальное выравнивание */
+}
+   img{
+       width: 100%;
+   }
+.slider {
+   position: relative;
+   width: 80%;
+   max-width: 600px;
+   overflow: hidden;
+   border-radius: 10px;
+   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+   margin-bottom: 10px;
+}
+.slides {
+   display: flex;
+   transition: transform 0.5s ease;
+}
+.slide {
+   min-width: 100%;
+   box-sizing: border-box;
+}
+.nav-buttons {
+   display: flex;
+   justify-content: space-between;
+   width: 80%; /* Ширина кнопок соответствует ширине слайдера */
+}
+.nav-buttons button {
+   background-color: rgba(255, 255, 255, 0.8);
+   border: none;
+   padding: 10px;
+   cursor: pointer;
+   border-radius: 5px;
+   width: 48%; /* Установлено для равномерного распределения */
+}
+.indicators {
+   text-align: center;
+   margin-top: 10px;
+}
+.indicator {
+   display: inline-block;
+   width: 10px;
+   height: 10px;
+   background-color: #bbb;
+   border-radius: 50%;
+   margin: 0 5px;
+   cursor: pointer;
+}
+.active {
+   background-color: #717171;
+}
