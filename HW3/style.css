@@ -1,0 +1,53 @@
+body {
+   margin: 1git0px;
+   padding: 0;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   height: 100vh;
+   font-family: Arial, sans-serif;
+   background-color: #d5d9bb;
+}
+#header{
+   color: #007BFF;
+}
+#photo {
+   max-height: 70vh;
+   width: auto;
+   margin-bottom: 20px;
+}
+
+#photographer {
+   margin-bottom: 10px;
+   font-size: 18px;
+   color: #333;
+}
+
+#likeButton {
+   background-color: #007BFF;
+   color: white;
+   border: none;
+   padding: 10px 20px;
+   font-size: 16px;
+   cursor: pointer;
+   border-radius: 5px;
+   margin-right: 10px;
+}
+
+#likeCount {
+   font-size: 18px;
+   color: #007BFF;
+   margin-right: 10px;
+}
+
+#viewHistoryButton {
+   margin-top: 20px;
+   padding: 10px 20px;
+   font-size: 16px;
+   color: #007BFF;
+   border: 2px solid #007BFF;
+   background-color: transparent;
+   cursor: pointer;
+   border-radius: 5px;
+}
